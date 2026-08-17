@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://ckxusj7px3yq8"]
+
+[ext_resource type="Texture2D" uid="uid://cwlyvoajxbgr6" path="res://assets/PNG/Red/Double/button_square_header_small_square_screws.png" id="1_5kiuu"]
+[ext_resource type="FontFile" uid="uid://dji1dej3ium7j" path="res://assets/fonts/VT323-Regular.ttf" id="2_dbls1"]
+[ext_resource type="Texture2D" uid="uid://ojo8bhodo4j1" path="res://assets/PNG/Extra/Default/panel_rectangle_screws.png" id="3_33cqm"]
+[ext_resource type="Texture2D" uid="uid://3rnjnurepip6" path="res://assets/pass_lock.png" id="4_xlg7c"]
+[ext_resource type="PackedScene" uid="uid://dy5yoyf1r2p6t" path="res://scene/login.tscn" id="4_xwcet"]
+[ext_resource type="PackedScene" uid="uid://ywuwfxpdeci8" path="res://scene/login_player.tscn" id="5_p1ry8"]
+
+[node name="Game" type="Node2D" unique_id=2119116844]
+
+[node name="Background" type="ColorRect" parent="." unique_id=1391373768]
+offset_left = -1209.0
+offset_top = -731.0
+offset_right = 1203.0
+offset_bottom = 694.0
+color = Color(0.2, 0.6, 0.85490197, 1)
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2005211391]
+metadata/_edit_lock_ = true
+
+[node name="Box" type="NinePatchRect" parent="." unique_id=1352351434]
+offset_left = -189.0
+offset_top = -180.0
+offset_right = 182.0
+offset_bottom = 156.0
+texture = ExtResource("1_5kiuu")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+metadata/_edit_lock_ = true
+
+[node name="LoginLabel" type="Label" parent="Box" unique_id=466262836]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 362.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("2_dbls1")
+theme_override_font_sizes/font_size = 48
+text = "LOG-IN'T"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Username" type="NinePatchRect" parent="." unique_id=460978857]
+offset_left = -134.0
+offset_top = -72.0
+offset_right = 134.0
+offset_bottom = -19.0
+texture = ExtResource("3_33cqm")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="UserText" type="Label" parent="Username" unique_id=505049538]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 10.0
+offset_right = 253.0
+offset_bottom = 45.0
+theme_override_constants/line_spacing = 3
+theme_override_fonts/font = ExtResource("2_dbls1")
+theme_override_font_sizes/font_size = 32
+text = " Username"
+vertical_alignment = 1
+clip_text = true
+
+[node name="Password" type="NinePatchRect" parent="." unique_id=185460188]
+offset_left = -134.0
+offset_top = 8.0
+offset_right = 134.0
+offset_bottom = 61.0
+texture = ExtResource("3_33cqm")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="PassText" type="Label" parent="Password" unique_id=2117166842]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 10.0
+offset_right = 256.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("2_dbls1")
+theme_override_font_sizes/font_size = 32
+text = " Password"
+vertical_alignment = 1
+clip_text = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Password" unique_id=97648932]
+position = Vector2(30, 27)
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("4_xlg7c")
+region_enabled = true
+region_rect = Rect2(0, 14, 24, 34)
+
+[node name="Login" parent="." unique_id=140710380 instance=ExtResource("4_xwcet")]
+position = Vector2(-1, 104)
+
+[node name="LoginPlayer" parent="." unique_id=137470723 instance=ExtResource("5_p1ry8")]
+position = Vector2(-105, -46)

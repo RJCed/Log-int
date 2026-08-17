@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ywuwfxpdeci8"]
+
+[ext_resource type="Texture2D" uid="uid://51is2cvak8ej" path="res://assets/login.png" id="1_q75pq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_le3kx"]
+radius = 8.0
+height = 26.0
+
+[node name="LoginPlayer" type="CharacterBody2D" unique_id=137470723]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1370895170]
+position = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_le3kx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1635757746]
+position = Vector2(0.99999976, 1.4374993)
+scale = Vector2(1.125, 1.125)
+texture = ExtResource("1_q75pq")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 23)
