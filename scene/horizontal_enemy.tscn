@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ds0gpkuk3lop6"]
+
+[ext_resource type="Script" uid="uid://cdfivhcadntre" path="res://script/horizontal_enemy.gd" id="1_8f50o"]
+[ext_resource type="FontFile" uid="uid://dji1dej3ium7j" path="res://assets/fonts/VT323-Regular.ttf" id="1_cc4di"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_le3kx"]
+size = Vector2(76, 26)
+
+[node name="HorizontalEnemy" type="CharacterBody2D" unique_id=803889823 groups=["enemy"]]
+script = ExtResource("1_8f50o")
+
+[node name="Character" type="Label" parent="." unique_id=1840720987]
+offset_left = -69.0
+offset_top = -27.0
+offset_right = 63.0
+offset_bottom = 20.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_cc4di")
+theme_override_font_sizes/font_size = 46
+text = "Del"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=773638030]
+position = Vector2(-2, -3)
+shape = SubResource("RectangleShape2D_le3kx")

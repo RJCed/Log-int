@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ywuwfxpdeci8"]
 
 [ext_resource type="Texture2D" uid="uid://51is2cvak8ej" path="res://assets/login.png" id="1_q75pq"]
+[ext_resource type="Script" uid="uid://beraexjsamsai" path="res://script/gun.gd" id="2_bolub"]
+[ext_resource type="Texture2D" uid="uid://cica3ulg4ms8o" path="res://assets/MiniGunPack1.png" id="2_ra1hp"]
+[ext_resource type="PackedScene" uid="uid://dufdf6fn4qw5x" path="res://scene/bullet.tscn" id="3_lnu3e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_le3kx"]
 radius = 8.0
@@ -18,3 +21,18 @@ scale = Vector2(1.125, 1.125)
 texture = ExtResource("1_q75pq")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 23)
+
+[node name="Gun" type="Node2D" parent="." unique_id=1629984660]
+visible = false
+script = ExtResource("2_bolub")
+bullet_scene = ExtResource("3_lnu3e")
+
+[node name="GunSprite" type="Sprite2D" parent="Gun" unique_id=1849032144]
+position = Vector2(23, 4)
+scale = Vector2(1.1923075, 1.1923076)
+texture = ExtResource("2_ra1hp")
+region_enabled = true
+region_rect = Rect2(7, 24, 21, 13)
+
+[node name="Muzzle" type="Marker2D" parent="Gun" unique_id=795464375 groups=["player"]]
+position = Vector2(37, 0)

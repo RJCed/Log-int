@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dufdf6fn4qw5x"]
+
+[ext_resource type="Script" uid="uid://dmxnyntlwcj01" path="res://script/bullet.gd" id="1_qwydi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_le3kx"]
+radius = 6.0
+
+[node name="Bullet" type="Area2D" unique_id=1053963452]
+script = ExtResource("1_qwydi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1447669099]
+position = Vector2(11, 0)
+shape = SubResource("CircleShape2D_le3kx")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=204060633]
+offset_left = -6.0
+offset_top = -3.0
+offset_right = 14.0
+offset_bottom = 3.0
+color = Color(1, 0.6156863, 0, 1)

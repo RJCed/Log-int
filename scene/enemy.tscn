@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dl7lmkl6vbsnc"]
+
+[ext_resource type="FontFile" uid="uid://dji1dej3ium7j" path="res://assets/fonts/VT323-Regular.ttf" id="1_h08p8"]
+[ext_resource type="Script" uid="uid://btd5owi7m5mmp" path="res://script/enemy.gd" id="1_yvcfn"]
+[ext_resource type="Script" uid="uid://5m6fsqq6w23j" path="res://script/enemy_gun.gd" id="3_b7koy"]
+[ext_resource type="PackedScene" uid="uid://dufdf6fn4qw5x" path="res://scene/bullet.tscn" id="3_yvcfn"]
+[ext_resource type="Texture2D" uid="uid://cica3ulg4ms8o" path="res://assets/MiniGunPack1.png" id="4_ulb22"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_le3kx"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e552"]
+atlas = ExtResource("4_ulb22")
+region = Rect2(0, 0, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgurf"]
+atlas = ExtResource("4_ulb22")
+region = Rect2(32, 0, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqmod"]
+atlas = ExtResource("4_ulb22")
+region = Rect2(0, 21, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqle"]
+atlas = ExtResource("4_ulb22")
+region = Rect2(32, 21, 32, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2y5xn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1e552")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1e552")
+}],
+"loop": 1,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgurf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgurf")
+}],
+"loop": 1,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqmod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqmod")
+}],
+"loop": 1,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqle")
+}],
+"loop": 1,
+"name": &"4",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1849718541 groups=["enemy"]]
+script = ExtResource("1_yvcfn")
+
+[node name="Character" type="Label" parent="." unique_id=418470711]
+offset_left = -9.0
+offset_top = -24.0
+offset_right = 9.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_h08p8")
+theme_override_font_sizes/font_size = 46
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1849668665]
+shape = SubResource("CapsuleShape2D_le3kx")
+
+[node name="Gun" type="Node2D" parent="." unique_id=362111063]
+script = ExtResource("3_b7koy")
+bullet_scene = ExtResource("3_yvcfn")
+
+[node name="Muzzle" type="Marker2D" parent="Gun" unique_id=1554102097]
+position = Vector2(34, 0)
+
+[node name="GunSprite" type="AnimatedSprite2D" parent="Gun" unique_id=809616766]
+position = Vector2(20, 1)
+scale = Vector2(0.8571429, 0.8571429)
+sprite_frames = SubResource("SpriteFrames_2y5xn")
+animation = &"1"
+autoplay = "1"
+
+[node name="ShootTimer" type="Timer" parent="Gun" unique_id=1367461011]
+wait_time = 6.2
+autostart = true
+
+[connection signal="timeout" from="Gun/ShootTimer" to="Gun" method="_on_shoot_timer_timeout"]

@@ -1,13 +1,29 @@
 [gd_scene format=3 uid="uid://ckxusj7px3yq8"]
 
 [ext_resource type="Texture2D" uid="uid://cwlyvoajxbgr6" path="res://assets/PNG/Red/Double/button_square_header_small_square_screws.png" id="1_5kiuu"]
+[ext_resource type="Script" uid="uid://50n0kv1x4qvn" path="res://script/game.gd" id="1_ll5lq"]
+[ext_resource type="PackedScene" uid="uid://dl7lmkl6vbsnc" path="res://scene/enemy.tscn" id="2_17rxn"]
 [ext_resource type="FontFile" uid="uid://dji1dej3ium7j" path="res://assets/fonts/VT323-Regular.ttf" id="2_dbls1"]
 [ext_resource type="Texture2D" uid="uid://ojo8bhodo4j1" path="res://assets/PNG/Extra/Default/panel_rectangle_screws.png" id="3_33cqm"]
 [ext_resource type="Texture2D" uid="uid://3rnjnurepip6" path="res://assets/pass_lock.png" id="4_xlg7c"]
 [ext_resource type="PackedScene" uid="uid://dy5yoyf1r2p6t" path="res://scene/login.tscn" id="4_xwcet"]
 [ext_resource type="PackedScene" uid="uid://ywuwfxpdeci8" path="res://scene/login_player.tscn" id="5_p1ry8"]
+[ext_resource type="Script" uid="uid://cb1m20tfc65aw" path="res://script/login_player.gd" id="7_qpk70"]
+[ext_resource type="Script" uid="uid://drqoykcdc5o7k" path="res://script/enemy_spawner.gd" id="9_17rxn"]
+[ext_resource type="PackedScene" uid="uid://ds0gpkuk3lop6" path="res://scene/horizontal_enemy.tscn" id="11_ym5sv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ll5lq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_17rxn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sng2h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yq8tf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ym5sv"]
 
 [node name="Game" type="Node2D" unique_id=2119116844]
+script = ExtResource("1_ll5lq")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1391373768]
 offset_left = -1209.0
@@ -69,6 +85,16 @@ text = " Username"
 vertical_alignment = 1
 clip_text = true
 
+[node name="Button" type="Button" parent="Username" unique_id=229756970]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 53.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ll5lq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_17rxn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sng2h")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yq8tf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ym5sv")
+
 [node name="Password" type="NinePatchRect" parent="." unique_id=185460188]
 offset_left = -134.0
 offset_top = 8.0
@@ -102,5 +128,19 @@ region_rect = Rect2(0, 14, 24, 34)
 [node name="Login" parent="." unique_id=140710380 instance=ExtResource("4_xwcet")]
 position = Vector2(-1, 104)
 
-[node name="LoginPlayer" parent="." unique_id=137470723 instance=ExtResource("5_p1ry8")]
+[node name="LoginPlayer" parent="." unique_id=137470723 groups=["player"] instance=ExtResource("5_p1ry8")]
 position = Vector2(-105, -46)
+script = ExtResource("7_qpk70")
+
+[node name="Enemies" type="Node2D" parent="." unique_id=2137929449]
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1573154035]
+script = ExtResource("9_17rxn")
+enemy_scene = ExtResource("2_17rxn")
+horizontal_enemy_scene = ExtResource("11_ym5sv")
+
+[node name="SpawnTimer" type="Timer" parent="EnemySpawner" unique_id=985967976]
+wait_time = 0.75
+autostart = true
+
+[connection signal="pressed" from="Username/Button" to="." method="_on_button_pressed"]
