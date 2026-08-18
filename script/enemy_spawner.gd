@@ -2,10 +2,12 @@ extends Node2D
 
 var gameStart = false
 
+signal changeLetter(text)
+
 @export var enemy_scene: PackedScene
 @export var horizontal_enemy_scene: PackedScene
-@export var spawn_distance: float = 100.0
 
+@export var spawn_distance: float = 100.0
 @export var horizontal_enemy_offset: float = 30.0
 
 #@onready var player = get_parent().get_node("Player")
@@ -18,7 +20,6 @@ func _ready():
 
 func spawn_enemy():
 	if gameStart:
-		print("Enemy")
 
 		var spawn_type = randf()
 
@@ -30,7 +31,6 @@ func spawn_enemy():
 
 func spawn_normal_enemy():
 	var enemy = enemy_scene.instantiate()
-
 	var viewport_size = get_viewport().get_visible_rect().size
 	var camera = get_viewport().get_camera_2d()
 	var screen_center = camera.get_screen_center_position()
@@ -85,6 +85,8 @@ func spawn_normal_enemy():
 	enemy.global_position = spawn_position
 	enemy.set_movement_direction(direction)
 	enemies.add_child(enemy)
+	
+	enemy.addLetter.connect(changeLabel)
 
 
 func spawn_horizontal_enemy():
@@ -119,7 +121,13 @@ func spawn_horizontal_enemy():
 	enemy.global_position = spawn_position
 	enemy.set_movement_direction(direction)
 	enemies.add_child(enemy)
+	
+	enemy.addLetter.connect(changeLabel)
 
 
 func changeState():
 	gameStart = true
+
+
+func changeLabel(text):
+	changeLetter.emit(text)

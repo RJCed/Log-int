@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal addLetter(text)
+
 @onready var gun_sprite: AnimatedSprite2D = $Gun/GunSprite
 @onready var character: Label = $Character
 @export var speed: float = 100.0
@@ -55,4 +57,5 @@ func is_outside_screen() -> bool:
 	return not bounds.has_point(global_position)
 
 func take_damage() -> void:
+	addLetter.emit(character.text)
 	queue_free()

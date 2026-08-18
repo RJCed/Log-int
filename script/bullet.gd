@@ -16,7 +16,6 @@ func _on_body_entered(body: Node) -> void:
 	var target_group = "enemy" if team == "player" else "player"
 
 	if body.is_in_group(target_group):
-		print("target group matched, has take_damage: ", body.has_method("take_damage"))
 		if body.has_method("take_damage"):
 			body.take_damage()
 

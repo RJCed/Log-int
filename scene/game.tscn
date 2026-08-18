@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3rnjnurepip6" path="res://assets/pass_lock.png" id="4_xlg7c"]
 [ext_resource type="PackedScene" uid="uid://dy5yoyf1r2p6t" path="res://scene/login.tscn" id="4_xwcet"]
 [ext_resource type="PackedScene" uid="uid://ywuwfxpdeci8" path="res://scene/login_player.tscn" id="5_p1ry8"]
+[ext_resource type="Script" uid="uid://bnqtkilpawyps" path="res://script/user_text.gd" id="5_sng2h"]
 [ext_resource type="Script" uid="uid://cb1m20tfc65aw" path="res://script/login_player.gd" id="7_qpk70"]
 [ext_resource type="Script" uid="uid://drqoykcdc5o7k" path="res://script/enemy_spawner.gd" id="9_17rxn"]
 [ext_resource type="PackedScene" uid="uid://ds0gpkuk3lop6" path="res://scene/horizontal_enemy.tscn" id="11_ym5sv"]
@@ -84,6 +85,7 @@ theme_override_font_sizes/font_size = 32
 text = " Username"
 vertical_alignment = 1
 clip_text = true
+script = ExtResource("5_sng2h")
 
 [node name="Button" type="Button" parent="Username" unique_id=229756970]
 layout_mode = 0

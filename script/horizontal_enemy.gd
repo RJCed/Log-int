@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
+signal addLetter(text)
+
 @export var speed: float = 100.0
+@export var dodge_speed: float = 100.0
+var dodge_side: int = 1
 
 var movement_direction: Vector2
 
@@ -18,8 +22,12 @@ func _ready() -> void:
 
 func _physics_process(_delta):
 	velocity = movement_direction * speed
-	move_and_slide()
 
+	if get_slide_collision_count() > 0:
+		var dodge_direction = movement_direction.rotated(PI / 2) * dodge_side
+		velocity += dodge_direction * dodge_speed
+	
+	move_and_slide()
 	if is_outside_screen():
 		queue_free()
 
@@ -48,4 +56,5 @@ func is_outside_screen() -> bool:
 
 
 func take_damage() -> void:
+	addLetter.emit(character.text)
 	queue_free()
