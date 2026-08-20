@@ -14,7 +14,7 @@ var movement_direction: Vector2
 var type = randf()
 
 func _ready() -> void:
-	if type > 0.2:
+	if type > 0.4:
 		character.text = "Del"
 	else:
 		character.text = "Enter"

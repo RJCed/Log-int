@@ -4,6 +4,8 @@ var gameStart = false
 
 signal changeLetter(text)
 
+@onready var konami: Node = $"../Konami"
+
 @export var enemy_scene: PackedScene
 @export var horizontal_enemy_scene: PackedScene
 
@@ -13,9 +15,11 @@ signal changeLetter(text)
 #@onready var player = get_parent().get_node("Player")
 @onready var enemies = get_parent().get_node("Enemies")
 
+var isKonami = false
 
 func _ready():
 	$SpawnTimer.timeout.connect(spawn_enemy)
+	konami.konami_activated.connect(konamiActivate)
 
 
 func spawn_enemy():
@@ -40,7 +44,9 @@ func spawn_normal_enemy():
 
 	var spawn_position: Vector2
 	var direction: Vector2
-
+	
+	if isKonami:
+		enemy.specialCharacter()
 	match side:
 		0: # Top
 			spawn_position = Vector2(
@@ -131,3 +137,7 @@ func changeState():
 
 func changeLabel(text):
 	changeLetter.emit(text)
+	
+
+func konamiActivate():
+	isKonami = true

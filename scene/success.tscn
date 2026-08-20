@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dx4vw15dxah7l"]
+
+[ext_resource type="Script" uid="uid://ckbgfwi8y5mum" path="res://script/success.gd" id="1_0ftht"]
+[ext_resource type="Texture2D" uid="uid://dely0p5dvy0db" path="res://assets/PNG/Red/Default/button_square_header_large_square_screws.png" id="1_8t4uc"]
+[ext_resource type="FontFile" uid="uid://dji1dej3ium7j" path="res://assets/fonts/VT323-Regular.ttf" id="2_0ftht"]
+[ext_resource type="Texture2D" uid="uid://d4ay5jbr5hla5" path="res://assets/Cloud.png" id="2_8qf4r"]
+[ext_resource type="AudioStream" uid="uid://cv6dqhntm3ngj" path="res://assets/Music/winner.ogg" id="5_li7jn"]
+
+[node name="Success" type="Node2D" unique_id=2009088855]
+script = ExtResource("1_0ftht")
+
+[node name="Background" type="ColorRect" parent="." unique_id=965129119]
+offset_left = -1209.0
+offset_top = -731.0
+offset_right = 1203.0
+offset_bottom = 694.0
+color = Color(0.2, 0.6, 0.85490197, 1)
+metadata/_edit_lock_ = true
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=850871450]
+repeat_size = Vector2(2380, 0)
+autoscroll = Vector2(-100, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1276651329]
+texture_repeat = 2
+position = Vector2(24.322395, 8.625021)
+scale = Vector2(4.9885006, 4.6080728)
+texture = ExtResource("2_8qf4r")
+region_enabled = true
+region_rect = Rect2(0, 0, 480, 160)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=662103831]
+metadata/_edit_lock_ = true
+
+[node name="Box" type="Sprite2D" parent="." unique_id=600932415]
+position = Vector2(0, -6.000001)
+scale = Vector2(5.96875, 5.96875)
+texture = ExtResource("1_8t4uc")
+
+[node name="LabelTop" type="Label" parent="." unique_id=1917755048]
+offset_left = -166.0
+offset_top = -132.0
+offset_right = 164.0
+offset_bottom = -22.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_0ftht")
+theme_override_font_sizes/font_size = 96
+text = "HA!?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelBottom" type="Label" parent="." unique_id=1056003321]
+offset_left = -166.0
+offset_top = 16.0
+offset_right = 166.0
+offset_bottom = 123.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_0ftht")
+theme_override_font_sizes/font_size = 96
+text = "HATDOG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundWin" type="AudioStreamPlayer2D" parent="." unique_id=28369055]
+stream = ExtResource("5_li7jn")

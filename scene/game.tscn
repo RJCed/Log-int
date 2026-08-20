@@ -4,14 +4,21 @@
 [ext_resource type="Script" uid="uid://50n0kv1x4qvn" path="res://script/game.gd" id="1_ll5lq"]
 [ext_resource type="PackedScene" uid="uid://dl7lmkl6vbsnc" path="res://scene/enemy.tscn" id="2_17rxn"]
 [ext_resource type="FontFile" uid="uid://dji1dej3ium7j" path="res://assets/fonts/VT323-Regular.ttf" id="2_dbls1"]
+[ext_resource type="PackedScene" uid="uid://dx4vw15dxah7l" path="res://scene/success.tscn" id="2_ve786"]
+[ext_resource type="Texture2D" uid="uid://d4ay5jbr5hla5" path="res://assets/Cloud.png" id="3_0lu6w"]
 [ext_resource type="Texture2D" uid="uid://ojo8bhodo4j1" path="res://assets/PNG/Extra/Default/panel_rectangle_screws.png" id="3_33cqm"]
-[ext_resource type="Texture2D" uid="uid://3rnjnurepip6" path="res://assets/pass_lock.png" id="4_xlg7c"]
+[ext_resource type="AudioStream" uid="uid://bx4xta68d2wov" path="res://assets/Music/gameMode.WAV" id="3_i6gbm"]
+[ext_resource type="AudioStream" uid="uid://bajjh7bqgxkc8" path="res://assets/Music/error.ogg" id="3_jrd6n"]
 [ext_resource type="PackedScene" uid="uid://dy5yoyf1r2p6t" path="res://scene/login.tscn" id="4_xwcet"]
 [ext_resource type="PackedScene" uid="uid://ywuwfxpdeci8" path="res://scene/login_player.tscn" id="5_p1ry8"]
 [ext_resource type="Script" uid="uid://bnqtkilpawyps" path="res://script/user_text.gd" id="5_sng2h"]
 [ext_resource type="Script" uid="uid://cb1m20tfc65aw" path="res://script/login_player.gd" id="7_qpk70"]
+[ext_resource type="Script" uid="uid://cf7xbmy4fnpgo" path="res://script/bullet_detector.gd" id="8_5g16k"]
 [ext_resource type="Script" uid="uid://drqoykcdc5o7k" path="res://script/enemy_spawner.gd" id="9_17rxn"]
+[ext_resource type="Texture2D" uid="uid://bbuqam0offhmj" path="res://assets/lock.png" id="10_jrd6n"]
 [ext_resource type="PackedScene" uid="uid://ds0gpkuk3lop6" path="res://scene/horizontal_enemy.tscn" id="11_ym5sv"]
+[ext_resource type="Script" uid="uid://cgjjy03ko7gd5" path="res://script/konami.gd" id="14_81276"]
+[ext_resource type="AudioStream" uid="uid://bblybd3mgnl3j" path="res://assets/Music/powerUp.wav" id="18_ux4dc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ll5lq"]
 
@@ -23,8 +30,22 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ym5sv"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_le3kx"]
+size = Vector2(151, 45)
+
 [node name="Game" type="Node2D" unique_id=2119116844]
 script = ExtResource("1_ll5lq")
+success_scene = ExtResource("2_ve786")
+
+[node name="AuthTimer" type="Timer" parent="." unique_id=912878207]
+wait_time = 5.0
+
+[node name="ErrorSound" type="AudioStreamPlayer2D" parent="." unique_id=2037880643]
+stream = ExtResource("3_jrd6n")
+volume_db = 10.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=847610083]
+stream = ExtResource("3_i6gbm")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1391373768]
 offset_left = -1209.0
@@ -33,6 +54,18 @@ offset_right = 1203.0
 offset_bottom = 694.0
 color = Color(0.2, 0.6, 0.85490197, 1)
 metadata/_edit_lock_ = true
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1267283746]
+repeat_size = Vector2(2380, 0)
+autoscroll = Vector2(-100, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1648986283]
+texture_repeat = 2
+position = Vector2(24.322395, 8.625021)
+scale = Vector2(4.9885006, 4.6080728)
+texture = ExtResource("3_0lu6w")
+region_enabled = true
+region_rect = Rect2(0, 0, 480, 160)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2005211391]
 metadata/_edit_lock_ = true
@@ -56,6 +89,8 @@ offset_left = 8.0
 offset_top = 7.0
 offset_right = 362.0
 offset_bottom = 67.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_dbls1")
 theme_override_font_sizes/font_size = 48
 text = "LOG-IN'T"
@@ -79,6 +114,7 @@ offset_left = 44.0
 offset_top = 10.0
 offset_right = 253.0
 offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.8862616, 0.88626146, 0.8862615, 1)
 theme_override_constants/line_spacing = 3
 theme_override_fonts/font = ExtResource("2_dbls1")
 theme_override_font_sizes/font_size = 32
@@ -114,6 +150,7 @@ offset_left = 45.0
 offset_top = 10.0
 offset_right = 256.0
 offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.8862745, 0.8862745, 0.8862745, 1)
 theme_override_fonts/font = ExtResource("2_dbls1")
 theme_override_font_sizes/font_size = 32
 text = " Password"
@@ -123,12 +160,20 @@ clip_text = true
 [node name="Sprite2D" type="Sprite2D" parent="Password" unique_id=97648932]
 position = Vector2(30, 27)
 scale = Vector2(0.875, 0.875)
-texture = ExtResource("4_xlg7c")
-region_enabled = true
+texture = ExtResource("10_jrd6n")
 region_rect = Rect2(0, 14, 24, 34)
 
-[node name="Login" parent="." unique_id=140710380 instance=ExtResource("4_xwcet")]
+[node name="Obstacle" type="Node2D" parent="." unique_id=1322303982]
+
+[node name="Login" parent="Obstacle" unique_id=140710380 instance=ExtResource("4_xwcet")]
 position = Vector2(-1, 104)
+
+[node name="BulletDetector" type="Area2D" parent="Obstacle" unique_id=1412326360]
+script = ExtResource("8_5g16k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle/BulletDetector" unique_id=993916702]
+position = Vector2(-0.5, 104.5)
+shape = SubResource("RectangleShape2D_le3kx")
 
 [node name="LoginPlayer" parent="." unique_id=137470723 groups=["player"] instance=ExtResource("5_p1ry8")]
 position = Vector2(-105, -46)
@@ -142,7 +187,16 @@ enemy_scene = ExtResource("2_17rxn")
 horizontal_enemy_scene = ExtResource("11_ym5sv")
 
 [node name="SpawnTimer" type="Timer" parent="EnemySpawner" unique_id=985967976]
-wait_time = 0.75
+wait_time = 1.25
 autostart = true
 
+[node name="Konami" type="Node" parent="." unique_id=1171525603]
+script = ExtResource("14_81276")
+
+[node name="KonamiSound" type="AudioStreamPlayer2D" parent="Konami" unique_id=1048212023]
+stream = ExtResource("18_ux4dc")
+volume_db = 2.0
+
+[connection signal="timeout" from="AuthTimer" to="." method="_on_auth_timer_timeout"]
+[connection signal="finished" from="BackgroundMusic" to="." method="_on_background_music_finished"]
 [connection signal="pressed" from="Username/Button" to="." method="_on_button_pressed"]

@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://ywuwfxpdeci8"]
 
-[ext_resource type="Texture2D" uid="uid://51is2cvak8ej" path="res://assets/login.png" id="1_q75pq"]
+[ext_resource type="Texture2D" uid="uid://cl2naty4nlndu" path="res://assets/playerLogin.png" id="1_fj2e5"]
 [ext_resource type="Script" uid="uid://beraexjsamsai" path="res://script/gun.gd" id="2_bolub"]
 [ext_resource type="Texture2D" uid="uid://cica3ulg4ms8o" path="res://assets/MiniGunPack1.png" id="2_ra1hp"]
 [ext_resource type="PackedScene" uid="uid://dufdf6fn4qw5x" path="res://scene/bullet.tscn" id="3_lnu3e"]
+[ext_resource type="AudioStream" uid="uid://bb7k2w1b3tvuo" path="res://assets/Music/reload.wav" id="5_hgo3h"]
+[ext_resource type="AudioStream" uid="uid://7fg1tclt5pso" path="res://assets/Music/shoot.wav" id="6_fj2e5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_le3kx"]
-radius = 8.0
+radius = 9.0
 height = 26.0
 
 [node name="LoginPlayer" type="CharacterBody2D" unique_id=137470723]
@@ -18,8 +20,7 @@ shape = SubResource("CapsuleShape2D_le3kx")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1635757746]
 position = Vector2(0.99999976, 1.4374993)
 scale = Vector2(1.125, 1.125)
-texture = ExtResource("1_q75pq")
-region_enabled = true
+texture = ExtResource("1_fj2e5")
 region_rect = Rect2(0, 0, 16, 23)
 
 [node name="Gun" type="Node2D" parent="." unique_id=1629984660]
@@ -36,3 +37,10 @@ region_rect = Rect2(7, 24, 21, 13)
 
 [node name="Muzzle" type="Marker2D" parent="Gun" unique_id=795464375 groups=["player"]]
 position = Vector2(37, 0)
+
+[node name="SoundPlayerGun" type="AudioStreamPlayer2D" parent="." unique_id=1738258054]
+stream = ExtResource("5_hgo3h")
+volume_db = 1.5
+
+[node name="SoundPlayerShoot" type="AudioStreamPlayer2D" parent="." unique_id=1605578782]
+stream = ExtResource("6_fj2e5")

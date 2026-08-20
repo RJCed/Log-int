@@ -4,9 +4,10 @@ signal addLetter(text)
 
 @onready var gun_sprite: AnimatedSprite2D = $Gun/GunSprite
 @onready var character: Label = $Character
+
 @export var speed: float = 100.0
 @export var dodge_speed: float = 100.0
-
+var specialChar = false
 
 var player: Node2D
 var movement_direction: Vector2
@@ -16,11 +17,15 @@ var dodge_side: int = 1
 var char = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", 
 			"S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
+var special = ["A", "R", "J", "Y", "1", "2", "3"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	gun_sprite.play(["1", "2", "3", "4"].pick_random())
-	character.text = char.pick_random()
+	if !specialChar:
+		character.text = char.pick_random()
+	else:
+		character.text = special.pick_random()
 	
 	player = get_tree().get_first_node_in_group("player")
 	dodge_side = 1 if randi() % 2 == 0 else -1
@@ -59,3 +64,7 @@ func is_outside_screen() -> bool:
 func take_damage() -> void:
 	addLetter.emit(character.text)
 	queue_free()
+
+
+func specialCharacter():
+	specialChar = true

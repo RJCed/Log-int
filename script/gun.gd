@@ -4,6 +4,8 @@ extends Node2D
 
 @onready var gun_sprite: Sprite2D = $GunSprite
 @onready var muzzle: Marker2D = $Muzzle
+@onready var sound_player: AudioStreamPlayer2D = $"../SoundPlayerGun"
+@onready var sound_player_shoot: AudioStreamPlayer2D = $"../SoundPlayerShoot"
 
 var gameStart = false
 
@@ -23,11 +25,15 @@ func _process(_delta):
 
 
 func changeState():
+	if !gameStart:
+		sound_player.play()
 	gameStart = true
+	
 
 
 func shoot():
 	if gameStart:
+		sound_player_shoot.play()
 		var bullet = bullet_scene.instantiate()
 
 		bullet.global_position = muzzle.global_position
