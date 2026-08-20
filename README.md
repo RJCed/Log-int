@@ -22,7 +22,7 @@ Log in using:
 Shoot the letters/numbers you need **in order**.
 
 * **Enter** — Move to the password
-* **Del** — Delete the last character
+* **Del** — Delete the last character or go back to Username (if password is empty)
 
 Click the **Username** box to start the game and begin spawning enemies
 
