@@ -32,7 +32,7 @@ Shoot the **Login Box** to submit your Username and Password
 
 Start the game (enemies spawning) and enter this on your keyboard:
 
-**↑ ↑ ↓ ↓ ← → ← → B A Enter**
+**↑ ↑ ↓ ↓ ← → ← → B A Enter** (Sound Indicator)
 
 In Easy Mode, enemies only spawn using the characters from:
 
