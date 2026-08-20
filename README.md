@@ -37,3 +37,10 @@ In Easy Mode, enemies only spawn using the characters from:
 ### Play
 
 https://rjced.itch.io/log-int
+
+## Credits
+
+**Created by:** Arjay Cedigo
+
+All assets used in this game are either handmade or sourced from **CC0 (Creative Commons Zero) public-domain assets**.
+
