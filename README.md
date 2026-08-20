@@ -28,7 +28,7 @@ Click the **Username** box to start the game and begin spawning enemies
 
 ## Secret Easy Mode
 
-Enter this on your keyboard:
+Start the game (enemies spawning) and enter this on your keyboard:
 
 **↑ ↑ ↓ ↓ ← → ← → B A Enter**
 
