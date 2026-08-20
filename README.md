@@ -25,6 +25,7 @@ Shoot the letters/numbers you need **in order**.
 * **Del** — Delete the last character or go back to Username (if password is empty)
 
 Click the **Username** box to start the game and begin spawning enemies
+
 Shoot the **Login Box** to submit your Username and Password
 
 ## Secret Easy Mode
